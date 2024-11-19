@@ -1,8 +1,11 @@
 import { CiBookmark, CiShare2 } from "react-icons/ci";
 import { IoEye } from "react-icons/io5";
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
+import { useState } from "react";
 
 const SingleNewsCard = ({ news }) => {
+
+    const [isReadMore, setIsReadMore] = useState(false);
 
     const { number } = news.rating;
 
@@ -38,7 +41,23 @@ const SingleNewsCard = ({ news }) => {
             <div className="p-5">
                 <p className="text-[20px] font-[700] text-[#403F3F]">{news.title}</p>
                 <img className="w-full my-5" src={news.image_url} alt="" />
-                <p className="text-[#706F6F] text-[16px] font-[400] mb-5">{news.details}</p>
+                <p className={`text-[#706F6F] text-[16px] font-[400] ${!isReadMore ? "line-clamp-2" : ""}`}>{news.details}</p>
+                {!isReadMore && (
+                    <button
+                        className="text-[#FF8C47] font-[600] cursor-pointer mb-5"
+                        onClick={() => setIsReadMore(true)}
+                    >
+                        Read More
+                    </button>
+                )}
+                {isReadMore && (
+                    <button
+                        className="text-[#FF8C47] font-[600] cursor-pointer mb-5"
+                        onClick={() => setIsReadMore(false)}
+                    >
+                        Read Less
+                    </button>
+                )}
                 <hr />
                 <div className="flex items-center justify-between mt-5">
                     <div className="flex items-center gap-3">

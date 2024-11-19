@@ -18,6 +18,9 @@ const LeftSide = () => {
                     ))
                 }
             </div>
+            <div>
+                
+            </div>
         </div>
     );
 };
